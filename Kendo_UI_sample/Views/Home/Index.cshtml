@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Scripts/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Scripts/kendo.default.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/js/jquery.min.js"></script>
+    <script src="~/Scripts/js/kendo.all.min.js"></script>
+    <script src="~/Scripts/js/kendo.web.min.js"></script>
+    <title>Index</title>
+</head>
+<body>
+    <div id="cars"></div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var cars = [
+                { year: 2012, make: "Ferrai", model: "California" },
+                { year: 2012, make: "Ferrai", model: "458 Italian" },
+                { year: 2012, make: "Lambhogini", model: "Aventador" },
+                { year: 2012, make: "Porshe", model: "911 GT3" },
+                { year: 2012, make: "McLaren", model: "MP14-12C" },
+                { year: 1972, make: "Jaguar", model: "E-type" },
+                { year: 1967, make: "Ford", model: "California" },
+                { year: 1971, make: "Plymouth", model: "(Hemi) Barracuda" },
+                { year: 2016, make: "ACURA", model: "TLX" },
+                { year: 2013, make: "Honda", model: "Accord" },
+                { year: 2011, make: "Nissan", model: "Rouge" },
+                { year: 2000, make: "Toyota", model: "Camry" }
+            ];
+
+            var carsDataSource = new kendo.data.DataSource({
+                data: cars, pazeSize: 4,
+                        sort: { field: "year", dir: "asc" }
+            });
+            carsDataSource.read();
+
+            $("#cars").kendoGrid({
+                dataSource: carsDataSource,
+                columns: [
+                    { field: "year", title: "Year" },
+                    { field: "make", title: "Make" },
+                    { field: "model", title: "Model" },
+                    {command: ["edit", "destroy"]}
+                ],
+                scrollable: false,
+                pageable: false,
+                editable: "inline",
+                
+
+            });
+
+        });
+    </script>
+</body>
+</html>
